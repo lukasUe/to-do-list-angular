@@ -1,0 +1,44 @@
+body {
+    width:"1024px";
+    height:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center{    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input {
+    padding: 5px;
+    background-color: lightgrey;
+
+}
+
+ table {
+   width: 100%;
+   margin-right: 10px;
+   margin-left: 10px;
+  }
+
+  .currentToDos{
+    display: block;
+    float: left;
+    width: 45%;;
+  }
+
+  .toDoWrapper{
+    margin-top: 50px;
+  }
+
+  .doneToDos{
+    display: block;
+    float: right;
+    width: 45%;
+  }
+
+  .green-button {
+    background-color: greenyellow;
+}

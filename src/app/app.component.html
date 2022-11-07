@@ -1,0 +1,85 @@
+<!-- install bootstrap   npm i bootstrap -->
+<!-- install angular material ui    ng add @angular/material -->
+<!-- generierung von komponenten  npx ng generate component Entry -->
+<h1>ToDo List</h1>
+<div clas="center">
+
+  <div id="entryblock">
+    <form>
+      <mat-form-field appearance="fill" id="assingedToInput">
+        <mat-label>AssignedTo</mat-label>
+        <input type="text" matInput placeholder="AssignedTo" [(ngModel)]="inputAssignedTo" name="first">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field appearance="fill" id="descriptionInput">
+        <mat-label>Description</mat-label>
+        <textarea type="text" matInput placeholder="Description" [(ngModel)]="inputDescription"
+          name="second"></textarea>
+      </mat-form-field>
+
+      <br>
+      <button mat-raised-button color="primary" (click)="addToDo()">Add</button>
+    </form>
+  </div>
+
+  <div class="toDoWrapper">
+    <div id="currentToDos" class="currentToDos">
+
+      <h2>ToDoList</h2>
+      <table mat-table [dataSource]="currentToDo" class="mat-elevation-z8" #todoTable>
+
+        <ng-container matColumnDef="assigendTo">
+          <th mat-header-cell *matHeaderCellDef> AssignedTo </th>
+          <td mat-cell *matCellDef="let element"> {{element.assigendTo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="doneButton">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <button mat-raised-button (click)="doneToDo(i)" class="green-button">Done</button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsOfToDos"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsOfToDos;"></tr>
+      </table>
+    </div>
+
+    <div id="doneToDos" class="doneToDos">
+      <h2>History</h2>
+      <s>
+        <table mat-table [dataSource]="doneToDos" class="mat-elevation-z8" #doneTodoTable>
+
+          <ng-container matColumnDef="assigendTo">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"> {{element.assigendTo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="deleteButton">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <button mat-fab color="warn" aria-label="Example icon button with a delete icon" (click)="deleteToDo(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <!-- <button mat-raised-button (click)="deleteToDo(i)">Done</button> -->
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsOfHistory"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsOfHistory;"></tr>
+        </table>
+      </s>
+    </div>
+  </div>
+
+</div>
